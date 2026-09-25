@@ -17,7 +17,7 @@ interface ThemeContextValue {
 }
 
 const THEME_STORAGE_KEY = "paperclip.theme";
-const DARK_THEME_COLOR = "#18181b";
+const DARK_THEME_COLOR = "#08090a"; // PAPERBOTS: brand void
 const LIGHT_THEME_COLOR = "#ffffff";
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 

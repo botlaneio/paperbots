@@ -1,4 +1,5 @@
 import type { SVGProps } from "react";
+import { PaperBotsLockup } from "@/paperbots/PaperBotsMark"; // PAPERBOTS
 
 interface PaperclipLockupProps extends Omit<SVGProps<SVGSVGElement>, "children"> {
   decorative?: boolean;
@@ -21,6 +22,7 @@ export function PaperclipLockup({
   className,
   ...rest
 }: PaperclipLockupProps) {
+  return <PaperBotsLockup className={className} decorative={decorative} />; // PAPERBOTS: brand lockup
   return (
     <svg
       {...rest}
