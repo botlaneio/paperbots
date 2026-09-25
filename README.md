@@ -1,3 +1,7 @@
+> **PaperBots — BotLane private build.** This is a private, single-user copy of
+> [Paperclip](https://github.com/paperclipai/paperclip) (MIT) for BotLane internal use.
+> It is not distributed or sold. See [BOTLANE.md](BOTLANE.md) for setup and upstream sync.
+
 <p align="center">
   <img src="doc/assets/banner.jpg" alt="Paperclip is the app people use to manage AI agents for work." width="720" />
 </p>
