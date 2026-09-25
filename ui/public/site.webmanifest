@@ -1,14 +1,14 @@
 {
   "id": "/",
-  "name": "Paperclip",
-  "short_name": "Paperclip",
-  "description": "AI-powered project management and agent coordination platform",
+  "name": "Paper Bots",
+  "short_name": "Paper Bots",
+  "description": "BotLane's AI company operating system",
   "start_url": "/",
   "scope": "/",
   "display": "browser",
   "orientation": "any",
-  "theme_color": "#18181b",
-  "background_color": "#18181b",
+  "theme_color": "#08090a",
+  "background_color": "#08090a",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

@@ -1,0 +1,34 @@
+/* Scanner mark animation — timings verbatim from botsign BotlaneMark.tsx */
+.pbm .pbm-eye,
+.pbm .pbm-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.pbm-anim .pbm-eye {
+  animation: pbm-blink 7.2s ease-in-out 1.4s infinite;
+}
+
+.pbm-anim .pbm-dot {
+  animation: pbm-scan 11s cubic-bezier(0.45, 0, 0.55, 1) 2.6s infinite;
+}
+
+/* Loading states scan sooner so a short wait still shows motion. */
+[role="status"] .pbm-anim .pbm-dot {
+  animation-delay: 0.2s;
+}
+
+@keyframes pbm-blink {
+  0%, 92%, 96.5%, 100% { transform: scaleY(1); }
+  94.2% { transform: scaleY(0.09); }
+}
+
+@keyframes pbm-scan {
+  0%, 14% { transform: translateX(0); }
+  46%, 54% { transform: translateX(24px); }
+  86%, 100% { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pbm * { animation: none !important; }
+}

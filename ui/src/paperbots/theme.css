@@ -1,0 +1,163 @@
+/*
+ * Paper Bots theme overlay — BotLane brand on top of the Paperclip token layer.
+ *
+ * Paperclip is the engine. Paper Bots is the experience. BotLane is the company.
+ *
+ * This file ONLY re-assigns tokens that upstream already defines in
+ * `ui/src/index.css` (semantic shadcn tier + sidebar + chart) and adds a few
+ * `--pb-*` brand tokens. It is pulled in by one `@import` line at the top of
+ * index.css, so upstream merges touch a single line.
+ *
+ * Why the `html:root` / `html.dark` selectors: they are one step more specific
+ * than upstream's `:root` / `.dark`, so these values win regardless of where
+ * the @import sits in the cascade. RULE: every token set in the light block
+ * must also be set in the dark block, otherwise the light value would leak
+ * into dark mode over upstream's `.dark` value.
+ *
+ * Source of brand values: botlaneio/botsign `src/app/globals.css`,
+ * `src/components/BotlaneMark.tsx`, `public/favicon.svg` (extracted 2026-09-25).
+ * botsign is dark-only; the DARK block uses exact brand tokens. The LIGHT block
+ * is DERIVED from the brand neutrals (marked "derived") and needs design sign-off.
+ */
+
+/* JetBrains Mono (brand mono), vendored — SIL OFL, see /fonts/paperbots/JetBrainsMono-OFL.txt */
+@font-face {
+  font-family: "JetBrains Mono Variable";
+  src: url("/fonts/paperbots/JetBrainsMono-Variable.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 100 800;
+}
+
+/* ─── Brand palette (botsign globals.css) — reference tokens, theme-independent ─── */
+html:root {
+  --pb-void: #08090a;
+  --pb-carbon: #0f1011;
+  --pb-obsidian: #161718;
+  --pb-graphite: #23252a;
+  --pb-smoke: #383b3f;
+  --pb-ash: #6e737c;
+  --pb-fog: #a3a8b0;
+  --pb-mist: #d2d5db;
+  --pb-bone: #e5e5e6;
+  --pb-paper: #ffffff;
+  --pb-ivory: #f4f3ef; /* favicon plate, dark browser chrome */
+  --pb-ink: #141414; /* favicon plate, light browser chrome */
+
+  --pb-action: #ecedef; /* --color-signal-red (monochrome action) */
+  --pb-action-hover: #ffffff; /* --color-signal-red-bright */
+  --pb-action-active: #ced0d5; /* --color-signal-red-deep */
+  --pb-on-action: #08090a; /* --color-on-accent */
+
+  --pb-ember: #f2a33c; /* error */
+  --pb-amber: #f2d84c; /* warning */
+  --pb-pulse-green: #27a644; /* success */
+  --pb-signal-teal: #02b8cc; /* info */
+  --pb-iris-violet: #6366f1;
+  --pb-lavender: #8b5cf6;
+
+  /* Scanner lamp — the ONLY place Signal Red appears (brand rule). */
+  --pb-signal-red: #ff5e4d;
+
+  --pb-font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* ─── Light theme (DERIVED from brand neutrals — botsign has no light theme) ─── */
+html:root {
+  --radius: 0.5rem; /* brand: cards/inputs/buttons 8px */
+  --font-mono: var(--pb-font-mono);
+
+  --background: var(--pb-paper);
+  --foreground: var(--pb-void);
+  --card: var(--pb-paper);
+  --card-foreground: var(--pb-void);
+  --popover: var(--pb-paper);
+  --popover-foreground: var(--pb-void);
+  --primary: var(--pb-void);
+  --primary-foreground: var(--pb-paper);
+  --secondary: var(--pb-ivory);
+  --secondary-foreground: var(--pb-void);
+  --muted: var(--pb-ivory);
+  --muted-foreground: #5c6068; /* derived: ash darkened for 4.5:1 on ivory */
+  --accent: var(--pb-ivory);
+  --accent-foreground: var(--pb-void);
+  --destructive: #b45309; /* derived: ember deepened for 5:1 on white */
+  --destructive-foreground: #b45309;
+  --border: var(--pb-bone);
+  --input: var(--pb-mist);
+  --ring: var(--pb-ash);
+
+  --chart-1: var(--pb-void);
+  --chart-2: var(--pb-smoke);
+  --chart-3: var(--pb-ash);
+  --chart-4: var(--pb-fog);
+  --chart-5: var(--pb-mist);
+
+  --sidebar: var(--pb-ivory);
+  --sidebar-foreground: var(--pb-void);
+  --sidebar-primary: var(--pb-void);
+  --sidebar-primary-foreground: var(--pb-paper);
+  --sidebar-accent: var(--pb-bone);
+  --sidebar-accent-foreground: var(--pb-void);
+  --sidebar-border: var(--pb-bone);
+  --sidebar-ring: var(--pb-ash);
+}
+
+/* ─── Dark theme (EXACT brand tokens) ─── */
+html.dark {
+  --radius: 0.5rem;
+  --font-mono: var(--pb-font-mono);
+
+  --background: var(--pb-void);
+  --foreground: var(--pb-bone);
+  --card: var(--pb-carbon);
+  --card-foreground: var(--pb-bone);
+  --popover: var(--pb-obsidian);
+  --popover-foreground: var(--pb-bone);
+  --primary: var(--pb-action);
+  --primary-foreground: var(--pb-on-action);
+  --secondary: var(--pb-obsidian);
+  --secondary-foreground: var(--pb-bone);
+  --muted: var(--pb-obsidian);
+  --muted-foreground: var(--pb-fog);
+  --accent: var(--pb-obsidian);
+  --accent-foreground: var(--pb-paper);
+  --destructive: var(--pb-ember); /* brand rule: status colors use no red */
+  --destructive-foreground: var(--pb-paper);
+  --border: rgba(255, 255, 255, 0.08); /* --border-default */
+  --input: rgba(255, 255, 255, 0.12); /* field-input hover edge */
+  --ring: var(--pb-fog);
+
+  --chart-1: var(--pb-bone);
+  --chart-2: var(--pb-fog);
+  --chart-3: var(--pb-ash);
+  --chart-4: var(--pb-smoke);
+  --chart-5: var(--pb-graphite);
+
+  --sidebar: var(--pb-carbon);
+  --sidebar-foreground: var(--pb-mist);
+  --sidebar-primary: var(--pb-action);
+  --sidebar-primary-foreground: var(--pb-on-action);
+  --sidebar-accent: var(--pb-graphite);
+  --sidebar-accent-foreground: var(--pb-paper);
+  --sidebar-border: rgba(255, 255, 255, 0.06); /* --border-subtle */
+  --sidebar-ring: var(--pb-fog);
+}
+
+/* ─── Typography ───
+   Inter is already upstream's sans; apply the brand's Inter feature set.
+   `.font-mono` is re-pointed because upstream's `@theme inline` bakes the
+   mono stack into the utility at build time (unlayered rule beats utilities). */
+body {
+  font-feature-settings: "cv01" on, "ss03" on, "zero" on;
+  letter-spacing: -0.006em;
+}
+
+.font-mono,
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--pb-font-mono);
+  font-feature-settings: "cv01" on, "ss03" on;
+}

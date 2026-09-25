@@ -1,5 +1,6 @@
 import type { SVGProps } from "react";
 import { cn } from "../lib/utils";
+import { PaperBotsLoading } from "@/paperbots/PaperBotsMark"; // PAPERBOTS
 
 export function AnimatedPaperclipIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (
@@ -24,6 +25,7 @@ export function AnimatedPaperclipIcon({ className, ...props }: SVGProps<SVGSVGEl
 
 /** Full-page loading state: a large, centered, gray animated paperclip. */
 export function PaperclipLoading({ className }: { className?: string }) {
+  return <PaperBotsLoading className={className} />; // PAPERBOTS: scanner loader
   return (
     <div
       role="status"
